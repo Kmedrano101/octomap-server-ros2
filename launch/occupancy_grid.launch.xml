@@ -1,0 +1,27 @@
+<launch>
+  <node pkg="octomap_server" exec="octomap_server_node" name="octomap_server" output="screen">
+    <!-- Set the resolution of the octomap -->
+    <param name="resolution" value="0.1"/>
+
+    <!-- Define the fixed frame of reference -->
+    <param name="frame_id" value="map"/>
+
+    <!-- Define the base frame of the robot -->
+    <param name="base_frame_id" value="drone_base_link"/>
+
+    <!-- Maximum range to integrate sensor data -->
+    <param name="sensor_model/max_range" value="50.0"/>
+    <param name="project_2d_map" value="true"/>
+
+    <!-- Ground filtering parameters -->
+    <param name="filter_ground_plane" value="false"/>
+    <param name="ground_filter/distance" value="0.1"/>
+    <param name="ground_filter/angle" value="0.15"/>
+    <param name="ground_filter/plane_distance" value="0.07"/>
+    <param name="pointcloud_min_z" value="-1.0"/>
+    <param name="pointcloud_max_z" value="2.0"/>
+
+    <!-- Remap the input point cloud topic -->
+    <remap from="cloud_in" to="/px4_drone/depth_camera/points_transformed"/>
+  </node>
+</launch>
