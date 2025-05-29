@@ -19,18 +19,18 @@ def generate_launch_description():
         executable='octomap_server_node',
         name='octomap_server',
         parameters=[{
-            'frame_id': 'map',
-            'base_frame_id': 'drone_base_link',
-            'use_sim_time': True,
+            'frame_id': 'camera_init', # simulated frame: map
+            'base_frame_id': 'body', # simulated frame: drone_base_link
+            'use_sim_time': False,
             'resolution': 0.5,
-            'sensor_model/max_range': 40.0,
+            'sensor_model/max_range': 70.0,
             'sensor_model/min_range': 0.05,
             'publish_free_space': True,
             'project_2d_map': True,
             'filter_ground_plane': False
         }],
         remappings=[
-            ('cloud_in', '/px4_drone/depth_camera/points_transformed'),
+            ('cloud_in', '/cloud_registered'), # simulated topic: /px4_drone/depth_camera/points_transformed
         ]
     )
     
