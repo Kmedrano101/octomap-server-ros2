@@ -22,15 +22,16 @@ def generate_launch_description():
             'frame_id': 'camera_init', # simulated frame: map
             'base_frame_id': 'body', # simulated frame: drone_base_link
             'use_sim_time': False,
-            'resolution': 0.5,
+            'resolution': 0.05,
             'sensor_model/max_range': 70.0,
-            'sensor_model/min_range': 0.05,
+            'sensor_model/min_range': 0.2,
             'publish_free_space': True,
             'project_2d_map': True,
             'filter_ground_plane': False
         }],
         remappings=[
             ('cloud_in', '/cloud_registered'), # simulated topic: /px4_drone/depth_camera/points_transformed
+            ('odom', '/Odometry'),
         ]
     )
     
